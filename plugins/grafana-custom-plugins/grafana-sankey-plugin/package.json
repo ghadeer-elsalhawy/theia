@@ -57,7 +57,7 @@
     "enzyme-adapter-react-16": "^1.15.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-google-charts": "^4.0.1"
+    "react-google-charts": "^5.2.1"
   },
   "packageManager": "yarn@1.22.19"
 }
