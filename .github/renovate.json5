@@ -1,0 +1,98 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:base",
+    ":gitSignOff", // Add commit Sign-Off for renovate commits
+  ],
+
+  // Allow only certain package managers and implicitly disable all others
+  enabledManagers: ["npm", "gomod", "github-actions"],
+
+  baseBranches: ["main"],
+  prConcurrentLimit: 5,
+  prHourlyLimit: 0,
+
+  postUpdateOptions: ["gomodTidy"],
+
+  // Don't separate major, minor and patch in different PRs
+  separateMajorMinor: false,
+  separateMinorPatch: false,
+
+  // Labels to include in the PR
+  labels: ["dependencies"],
+
+  // Enabling security updates based on GitHub's Dependabot-style security alerts
+  vulnerabilityAlerts: {
+    enabled: true,
+  },
+
+  packageRules: [
+    {
+      matchManagers: ["npm"],
+      enabled: false,
+    },
+
+    {
+      matchManagers: ["npm"],
+      matchFileNames: ["/plugins/grafana-custom-plugins/*"],
+      addLabels: ["javascript"],
+      enabled: true,
+    },
+
+    {
+      matchManagers: ["gomod"],
+      addLabels: ["go"],
+      enabled: true,
+    },
+
+    {
+      matchManagers: ["gomod"],
+      matchPackagePrefixes: [
+        "k8s.io/",
+        "sigs.k8s.io/",
+        "github.com/containernetworking/",
+      ],
+      matchPackageNames: [
+        "github.com/vmware/go-ipfix",
+        "github.com/TomCodeLV/OVSDB-golang-lib",
+        "antrea.io/ofnet",
+        "antrea.io/libOpenflow",
+      ],
+      enabled: false,
+    },
+
+    {
+      matchManagers: ["gomod"],
+      matchFileNames: ["/snowflake/*"],
+      matchPackagePrefixes: [
+        "k8s.io/",
+        "sigs.k8s.io/",
+        "github.com/containernetworking/",
+      ],
+      matchPackageNames: [
+        "github.com/vmware/go-ipfix",
+        "github.com/TomCodeLV/OVSDB-golang-lib",
+        "antrea.io/ofnet",
+        "antrea.io/libOpenflow",
+      ],
+      enabled: false,
+    },
+
+    {
+      matchManagers: "github-actions",
+      addLabels: ["github_actions"],
+      enabled: true,
+    },
+
+    {
+      matchManagers: "github-actions",
+      matchPackageNames: [
+        "actions/upload-artifact",
+        "actions/download-artifact",
+      ],
+      groupName: "artifact-actions",
+      groupSlug: "artifact-actions",
+      enabled: true,
+    },
+  ],
+}
