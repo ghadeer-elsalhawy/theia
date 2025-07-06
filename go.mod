@@ -86,7 +86,7 @@ require (
 	github.com/cloudflare/golz4 v0.0.0-20150217214814-ef862a3cdc58 // indirect
 	github.com/containerd/cgroups v1.0.4 // indirect
 	github.com/containernetworking/cni v1.1.1 // indirect
-	github.com/contiv/libovsdb v0.0.0-20170227191248-d0061a53e358 // indirect
+	github.com/contiv/libovsdb bbc744d8ddc8 // indirect
 	github.com/coreos/go-iptables v0.7.0 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
